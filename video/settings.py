@@ -25,7 +25,7 @@ SECRET_KEY = '$6=idiqho7h#xdbyoia5uero@@5&_k=0nmm$l_py*t38vpxwx@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '114.55.250.170', 'www.tooltool.club', 'tooltool.club', 'www.plutozone.site', 'plutozone.site']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
