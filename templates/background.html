@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tool Tool 更换壁纸</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <style type="text/css">
+        #bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #bg img {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="bg">
+        <img src="{{ background_img }}">
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-3">
+                <h5>
+                    <a href="/vip/home" style="color: gray"><span class="glyphicon glyphicon-home"></span> Home</a>
+                    <a>&nbsp;</a>
+                    <a href="/vip/music/search" style="color: gray"><span class="glyphicon glyphicon-music"></span>
+                        Music</a>
+                    <a>&nbsp;</a>
+                    <a href="/vip/movie/home" style="color: gray"><span class="glyphicon glyphicon-film"></span>
+                        Movie</a>
+                    <a>&nbsp;</a>
+                    <a href="/vip/help" style="color: gray"><span class="glyphicon glyphicon-qrcode"></span> Help</a>
+                </h5>
+            </div>
+            <div class="col-md-6">
+                <div style="width:640px; float:left">
+                    <h3 class="text-center">更换壁纸</h3>
+                    <p class="text-center">单击图片即可更换壁纸</p>
+                </div>
+                <div>
+                    {% for i in page_bg %}
+                        <div class="col-md-4 text-center">
+                            <a href="/vip/background?page={{ page }}&set={{ i.img_url }}">
+                                <img type="button" src="{{ i.img_url }}" height="100" width="190" alt="{{ i.name }}">
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="col-md-10 col-md-offset-1">
+                    <nav aria-label="Page navigation">
+                        <ul class="pager">
+                            <li>
+                                <a href="/vip/background?page={{ page_pre }}" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            {% if page == 1 %}
+                                <li><a href="/vip/background?page=1" class="btn btn-success">1</a></li>
+                                <li><a href="/vip/background?page=2">2</a></li>
+                                <li><a href="/vip/background?page=3">3</a></li>
+                                <li><a href="/vip/background?page=4">4</a></li>
+                                <li><a href="/vip/background?page=5">5</a></li>
+                            {% endif %}
+                            {% if page == 2 %}
+                                <li><a href="/vip/background?page=1">1</a></li>
+                                <li><a href="/vip/background?page=2" class="btn btn-success">2</a></li>
+                                <li><a href="/vip/background?page=3">3</a></li>
+                                <li><a href="/vip/background?page=4">4</a></li>
+                                <li><a href="/vip/background?page=5">5</a></li>
+                            {% endif %}
+                            {% if page == page_num %}
+                                <li><a href="/vip/background?page={{ page_num_4 }}">{{ page_num_4 }}</a></li>
+                                <li><a href="/vip/background?page={{ page_num_3 }}">{{ page_num_3 }}</a></li>
+                                <li><a href="/vip/background?page={{ page_num_2 }}">{{ page_num_2 }}</a></li>
+                                <li><a href="/vip/background?page={{ page_num_1 }}">{{ page_num_1 }}</a></li>
+                                <li><a href="/vip/background?page={{ page_num }}"
+                                       class="btn btn-success">{{ page_num }}</a>
+                                </li>
+                            {% endif %}
+                            {% if page > 2 and page < page_num %}
+                                <li><a href="/vip/background?page={{ page_2 }}">{{ page_2 }}</a></li>
+                                <li><a href="/vip/background?page={{ page_pre }}">{{ page_pre }}</a></li>
+                                <li><a href="/vip/background?page={{ page }}" class="btn btn-success">{{ page }}</a>
+                                </li>
+                                <li><a href="/vip/background?page={{ page_next }}">{{ page_next }}</a></li>
+                                <li><a href="/vip/background?page={{ page__2 }}">{{ page__2 }}</a></li>
+                            {% endif %}
+                            <li>
+                                <a href="/vip/background?page={{ page_next }}" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

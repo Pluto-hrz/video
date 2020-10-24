@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="1797fccb-2598-4af5-ad13-ff9ba944d15a" name="hrz" url="http://114.55.250.170">
+        <fileTransfer host="114.55.250.170" port="10083" rootFolder="/home/hrz/video" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="10083" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

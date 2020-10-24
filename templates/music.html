@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tool Tool 音乐专栏_{{ search }}</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <style type="text/css">
+        #bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #bg img {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="bg">
+        <img src="{{ background_img }}">
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-3">
+                <h5>
+                    <a href="/vip/home" style="color: gray"><span class="glyphicon glyphicon-home"></span> Home</a>
+                    <a>&nbsp;</a>
+                    <a href="/vip/music/search" style="color: gray"><span class="glyphicon glyphicon-music"></span>
+                        Music</a>
+                    <a>&nbsp;</a>
+                    <a href="/vip/movie/home" style="color: gray"><span class="glyphicon glyphicon-film"></span>
+                        Movie</a>
+                    <a>&nbsp;</a>
+                    <a href="/vip/help" style="color: gray"><span class="glyphicon glyphicon-qrcode"></span> Help</a>
+                </h5>
+            </div>
+            <div class="col-md-6">
+                <div style="width:640px; float:left" class="text-center">
+                    <h5>&nbsp;</h5>
+                    <h3>Tool音乐搜索页面</h3>
+                    <p>右击音乐选择 "音频另存为..." 即可下载音乐</p>
+                    <h7>&nbsp;</h7>
+                </div>
+                <div class="text-left">
+                    <table class="table table-striped">
+                        {% for music in musics_list %}
+                            <div class="row">
+                                <div class="col-md-5 col-md-offset-1">
+                                    <p>音乐名：{{ music.song_name }}</p>
+                                    <p>演唱者：{{ music.singer_name }}</p>
+                                </div>
+                                <div class="col-md-6">
+                                    <audio controls>
+                                        <source src="{{ music.url }}" type=audio/mpeg>
+                                    </audio>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="col-md-9 col-md-offset-2">
+                    <nav aria-label="Page navigation">
+                        <ul class="pager">
+                            <li>
+                                <a href="/vip/music?page={{ page_pre }}&search={{ search }}&search_id={{ search_id }}"
+                                   aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            {% if page == 1 %}
+                                <li><a href="/vip/music?page=1&search={{ search }}&search_id={{ search_id }}"
+                                       class="btn-info">1</a></li>
+                                <li><a href="/vip/music?page=2&search={{ search }}&search_id={{ search_id }}">2</a></li>
+                                <li><a href="/vip/music?page=3&search={{ search }}&search_id={{ search_id }}">3</a></li>
+                                <li><a href="/vip/music?page=4&search={{ search }}&search_id={{ search_id }}">4</a></li>
+                                <li><a href="/vip/music?page=5&search={{ search }}&search_id={{ search_id }}">5</a></li>
+                            {% endif %}
+                            {% if page == 2 %}
+                                <li><a href="/vip/music?page=1&search={{ search }}&search_id={{ search_id }}">1</a></li>
+                                <li><a href="/vip/music?page=2&search={{ search }}&search_id={{ search_id }}"
+                                       class="btn-info">2</a></li>
+                                <li><a href="/vip/music?page=3&search={{ search }}&search_id={{ search_id }}">3</a></li>
+                                <li><a href="/vip/music?page=4&search={{ search }}&search_id={{ search_id }}">4</a></li>
+                                <li><a href="/vip/music?page=5&search={{ search }}&search_id={{ search_id }}">5</a></li>
+                            {% endif %}
+                            {% if page > 2 %}
+                                <li>
+                                    <a href="/vip/music?page={{ page_2 }}&search={{ search }}&search_id={{ search_id }}">{{ page_2 }}</a>
+                                </li>
+                                <li>
+                                    <a href="/vip/music?page={{ page_pre }}&search={{ search }}&search_id={{ search_id }}">{{ page_pre }}</a>
+                                </li>
+                                <li><a href="/vip/music?page={{ page }}&search={{ search }}&search_id={{ search_id }}"
+                                       class="btn-info">{{ page }}</a></li>
+                                <li>
+                                    <a href="/vip/music?page={{ page_next }}&search={{ search }}&search_id={{ search_id }}">{{ page_next }}</a>
+                                </li>
+                                <li>
+                                    <a href="/vip/music?page={{ page__2 }}&search={{ search }}&search_id={{ search_id }}">{{ page__2 }}</a>
+                                </li>
+                            {% endif %}
+                            <li>
+                                <a href="/vip/music?page={{ page_next }}&search={{ search }}&search_id={{ search_id }}"
+                                   aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
